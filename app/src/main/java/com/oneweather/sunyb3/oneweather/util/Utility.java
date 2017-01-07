@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 /**
  * Created by sunyb3 on 17-1-7.
+ * Gson解析
  */
 
 public class Utility {

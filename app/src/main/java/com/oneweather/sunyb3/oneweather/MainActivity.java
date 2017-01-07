@@ -30,10 +30,6 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import static com.oneweather.sunyb3.oneweather.R.id.forecast_layout;
-import static com.oneweather.sunyb3.oneweather.R.id.title_city;
-import static com.oneweather.sunyb3.oneweather.R.id.useLogo;
-
 public class MainActivity extends AppCompatActivity {
     Button serch_b;
     EditText editText;
@@ -98,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         dialog.setMessage("请输入城市名称");
                         dialog.show();
 
-                    } else{
+                    } else {
                         resquestWeather(city);
 
                     }
@@ -112,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void  resquestWeather(final String city_Name) {
-        String weatherUrl = "https://free-api.heweather.com/v5/weather?city=" +city_Name+ "&key=e93add9e797746e8b6c1c262aeec1013";
+    public void resquestWeather(final String city_Name) {
+        String weatherUrl = "https://free-api.heweather.com/v5/weather?city=" + city_Name + "&key=e93add9e797746e8b6c1c262aeec1013";
         HttpUtil.sendOkhttpRequest(weatherUrl, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -148,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * @param weather 处理并展示Weather实体类的数据
      */
-    public void showWeatherInfo(Weather weather) throws Exception{
+    public void showWeatherInfo(Weather weather) throws Exception {
 
 
         String cityName = weather.basic.cityName;
@@ -162,24 +158,20 @@ public class MainActivity extends AppCompatActivity {
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
         forecastLayout.removeAllViews();
-        for (Forecast forecast:weather.forecastList){
-            View view=LayoutInflater.from(this).inflate(R.layout.forecast_item,forecastLayout,false);
-             TextView  dateText= (TextView) view.findViewById(R.id.date_text);
-            TextView   infoText= (TextView) view.findViewById(R.id.info_text);
-            TextView    maxText= (TextView) view.findViewById(R.id.max_text);
-            TextView   minText= (TextView) view.findViewById(R.id.min_text);
-            String date =forecast.date;
-            String info=forecast.more.info;
-            String max=forecast.temperature.max;
-            String min=forecast.temperature.min;
-            Log.d("date", date);
-            Log.d("info", info);
-            Log.d("max", max);
-            Log.d("min", min);
-             dateText.setText(date);
+        for (Forecast forecast : weather.forecastList) {
+            View view = LayoutInflater.from(this).inflate(R.layout.forecast_item, forecastLayout, false);
+            TextView dateText = (TextView) view.findViewById(R.id.date_text);
+            TextView infoText = (TextView) view.findViewById(R.id.info_text);
+            TextView maxText = (TextView) view.findViewById(R.id.max_text);
+            TextView minText = (TextView) view.findViewById(R.id.min_text);
+            String date = forecast.date;
+            String info = forecast.more.info;
+            String max = forecast.temperature.max;
+            String min = forecast.temperature.min;
+            dateText.setText(date);
             infoText.setText(info);
             maxText.setText(max);
-minText.setText(min);
+            minText.setText(min);
             forecastLayout.addView(view);
 
         }
@@ -196,8 +188,6 @@ minText.setText(min);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
     }
-
-
 
 
 }
